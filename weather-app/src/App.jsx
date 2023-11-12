@@ -1,54 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import WeatherList from './components/WeatherList';
+import CurrentWeather from './components/CurrentWeather';
+import './App.css'
 
-function WeatherApp({ children }){
-  return(
-    <div className="page">
-      {children}
-    </div>
-  )
-}
 
-function CurrentWeather({ coordinates }){
-  return(
-    <div className="current-weather">
-      
-    </div>
-  )
-}
 
-function WeatherList({ coordinates }){
-  return(
-    <div className="weatherlist">
-      
-    </div>
-  )
-}
-
-function App(){
+function WeatherApp(){
   const [ coordinates , setCoordinates ] = useState({ 'latitude' : '0' , 'longitude' : '0'});
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    console.log("Geolocation not supported");
+  function handleRefreshClick(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation not supported");
+    }
+    
+    function success(position) {
+      setCoordinates({'latitude' : position.coords.latitude, 'longitude' :  position.coords.longitude })
+      console.log(coordinates);
+    }
+    
+    function error() {
+      console.log("Unable to retrieve your location");
+    }
   }
   
-  function success(position) {
-    setCoordinates({'latitude' : position.coords.latitude, 'longitude' :  position.coords.longitude })
-    console.log(coordinates);
-  }
-  
-  function error() {
-    console.log("Unable to retrieve your location");
-  }
+  return(
+    <div className="page">
+      <button 
+        className="refresh-button"
+        onClick={handleRefreshClick}>
+          Refresh
+      </button>
+      <CurrentWeather coordinates={coordinates} />
+      <WeatherList coordinates={coordinates} />
+    </div>
+  )
+}
+
+
+
+function App(){
 
   return(
-    <>
-    <WeatherApp>
-    <CurrentWeather coordinates={coordinates} />
-    <WeatherList coordinates={coordinates} />
-    </WeatherApp>
-    </>
+    <WeatherApp />
   )
 }
 
