@@ -23,6 +23,7 @@ function WeatherApp(){
     function error() {
       console.log("Unable to retrieve your location");
     }
+    
   }
   
   return(

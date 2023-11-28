@@ -5,6 +5,7 @@ function CurrentWeather({ coordinates }){
     const [ weather, setWeather ] = useState(null);
   
     async function currentweathercall(coordinates){
+      setWeather(null);
       await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&timezone=auto`
       )
@@ -33,16 +34,24 @@ function CurrentWeather({ coordinates }){
   
   
       return(
-        <div className="current-weather">
+        <div className="m-10 p-10 border shadow-sm shadow-gray-300 rounded-xl">
          { weather?
           (<>
-            <h1 className="current-weather-temp">{weather.current.temperature_2m}</h1>
-            <h3 className="current-weather-relhum">{weather.current.relative_humidity_2m}</h3>
-            <h3 className="current-weather-precip">{weather.current.precipitation}</h3>
-            <h3 className="current-weather-windspd">{weather.current.wind_speed_10m}</h3>
+
+            <h1 className="text-5xl">{weather.current.temperature_2m}</h1>
+            <div className="current-rel-humidity">
+              
+              <h3 className="text-2xl">{weather.current.relative_humidity_2m}</h3>
+            </div>
+            <div className="current-precipitation">
+              <h3 className="text-2xl">{weather.current.precipitation}</h3>
+            </div>
+            <div className="current-windspd">
+              <h3 className="text-2xl">{weather.current.wind_speed_10m}</h3>
+              </div>
           </>)
           :
-          (<h1 className="current-weather-error">Loading...</h1>)}
+          (<h1 className="text-5xl">Loading...</h1>)}
         </div>
       )
   
