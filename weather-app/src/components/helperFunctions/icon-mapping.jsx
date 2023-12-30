@@ -1,12 +1,22 @@
-import clear_sky_day from '../../assets/weather-icons/clear sky.svg'
-import clear_sky_night from '../../assets/weather-icons/clear night.svg'
-import overcast from '../../assets/weather-icons/overcast.svg'
-import fog from '../../assets/weather-icons/fog.svg'
-import rainy from '../../assets/weather-icons/rainy.svg'
-import snowFall from '../../assets/weather-icons/snow fall.svg'
-import snowGrain from '../../assets/weather-icons/snow grains.svg'
-import thunder from '../../assets/weather-icons/thunderstorm.svg'
+import ClearSkyDay  from '../../assets/weather-icons/clear sky.svg?react'
+import ClearSkyNight  from '../../assets/weather-icons/clear night.svg?react'
+import Overcast  from '../../assets/weather-icons/overcast.svg?react'
+import  Fog  from '../../assets/weather-icons/fog.svg?react'
+import  Rainy  from '../../assets/weather-icons/rainy.svg?react'
+import SnowFall  from '../../assets/weather-icons/snow fall.svg?react'
+import SnowGrain  from '../../assets/weather-icons/snow grains.svg?react'
+import Thunder  from '../../assets/weather-icons/thunderstorm.svg?react'
 
+const clear_sky_day = <ClearSkyDay />;
+const clear_sky_night = <ClearSkyNight />;
+const overcast = <Overcast />;
+const fog = <Fog />
+const rainy = <Rainy />
+const snowFall = <SnowFall />
+const snowGrain = <SnowGrain />
+const thunder = <Thunder />
+
+ 
 const data = [
     {
         'id' : 0,
@@ -124,12 +134,13 @@ const data = [
     },
 ];
 
-const getMapping = (weather_code, is_day) =>{
+const getMapping = ({ weather_code, is_day }) =>{
     const link = data.find(item => weather_code === item.id);
-    if(is_day){
-        return link['link-day'];
-    }
-    return link["link-night"];
+    return (
+        <div className='fill-white'> 
+            {is_day ? link['link-day'] : link['link-night']}
+        </div>
+    );
 }
 
 export default getMapping;

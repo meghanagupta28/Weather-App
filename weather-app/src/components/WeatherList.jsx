@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import iconMap from './helperFunctions/icon-mapping'
+import GetIcon from './helperFunctions/icon-mapping.jsx'
 
 function HourlyWeather({ date, data }){
     
     const hours = [ 2, 5, 8, 11, 14, 17, 20, 23 ];
     return(
       <>
-            <div className='p-4 m-3 border rounded-md'>
+            <div className='p-4 m-3 border rounded-md backdrop-blur-sm'>
               <div className="flex">
                 <div className='text-3xl basis-1/4 font-DMSerif'>{date}</div>
                 <div className='flex font-medium basis-3/4'>
@@ -117,12 +117,12 @@ function WeatherItems({ weather }){
     const { daily , hourly } = modifyData(weather);
 
     return(<>
-      <div className="flex justify-center gap-2 p-5 m-1">
+      <div className="flex justify-center gap-2 p-5 m-1 backdrop-blur-sm ">
         {daily.map((element, index) => {
                 return(
-                    <div className='self-center flex-grow p-3 border rounded-xl' key={index} onClick={() => handleClick(index)}>
+                    <div className='self-center flex-grow p-3 border rounded-xl ' key={index} onClick={() => handleClick(index)}>
                         <h1 className='text-xl font-DMSerif'>{element.time}</h1>
-                        <img src={iconMap(element.weather_code, 1)} alt="" />
+                        <GetIcon weather_code={element.weather_code} is_day={0}/>
                         <h3>{element.temperature_max}</h3>
                         <h3>{element.temperature_min}</h3>
                         <h3>{element.precipitation}</h3>

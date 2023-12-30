@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import getMapping from './helperFunctions/icon-mapping.js'
+import GetIcon from './helperFunctions/icon-mapping.jsx'
 
 
 /**
@@ -43,7 +43,7 @@ function CurrentWeather({ coordinates }){
   
   
       return(
-        <div className="flex p-10 m-10 border shadow-sm shadow-gray-300 rounded-xl">
+        <div className="flex p-10 m-5 backdrop-blur-xs shadow-gray-300 rounded-xl">
          { weather?
           (<>
           <div className="grid basis-1/2 font-Montserrat">
@@ -54,7 +54,7 @@ function CurrentWeather({ coordinates }){
 
           </div>
       
-          <img className="h-36 w-36" src= {getMapping(weather.current.weather_code, weather.current.is_day_or_night)} alt="weather-icon" />
+          <GetIcon weather_code={weather.current.weather_code} is_day={weather.current.is_day}/>
           </>)
           :
           (<h1 className="text-5xl font-DMSerif">Loading...</h1>)}

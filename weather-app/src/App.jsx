@@ -43,7 +43,7 @@ function WeatherApp(){
   }
   
   return(
-    <div className="page">
+    <div className="h-screen text-white bg-center bg-no-repeat bg-cover bg-wallpaper">
       
       <WeatherNavBar handleRefreshClick={handleRefreshClick}/>
       <CurrentWeather coordinates={coordinates} />
