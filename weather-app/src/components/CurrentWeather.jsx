@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import GetIcon from './helperFunctions/icon-mapping.jsx'
+import Precipitation from '../assets/param-icons/precipitation.svg?react'
+import WindSpeed from '../assets/param-icons/wind_speed.svg?react'
+import Humidity from '../assets/param-icons/humidity.svg?react'
 
 
 /**
@@ -43,21 +46,33 @@ function CurrentWeather({ coordinates }){
   
   
       return(
-        <div className="flex p-10 m-5 backdrop-blur-xs shadow-gray-300 rounded-xl">
+        <div className="flex p-10 m-2 h-30 backdrop-blur-xs shadow-gray-300 rounded-xl">
          { weather?
           (<>
-          <div className="grid basis-1/2 font-Montserrat">
-            <div className="text-5xl">{weather.current.temperature_2m}</div>
-            <div className="text-2xl">{weather.current.relative_humidity_2m}</div>
-            <div className="text-2xl">{weather.current.precipitation}</div>
-            <div className="text-2xl">{weather.current.wind_speed_10m}</div>
+          <div className="grid basis-1/8 font-Montserrat">
+            <div className="flex text-5xl">
+              {weather.current.temperature_2m}
+            </div>
+            <div className="flex text-2xl">
+            <Precipitation className='w-5 h-5 m-1 fill-white' />
+              {weather.current.relative_humidity_2m}
+            </div>
+            <div className="flex text-2xl align-middle">
+             <Humidity className='w-5 h-5 m-1 fill-white' />
+             <div> {weather.current.precipitation} </div>
+              </div>
+            <div className="flex text-2xl">
+            <WindSpeed className='w-5 h-5 m-1 fill-white' />
+              {weather.current.wind_speed_10m}
+              </div>
 
           </div>
-      
-          <GetIcon weather_code={weather.current.weather_code} is_day={weather.current.is_day}/>
+          <div className='w-20 h-20 basis-1/3'>
+            <GetIcon weather_code={weather.current.weather_code} is_day={weather.current.is_day} size={'big'}/>
+          </div>
           </>)
           :
-          (<h1 className="text-5xl font-DMSerif">Loading...</h1>)}
+          (<h1 className="text-5xl h-1000 font-DMSerif">Loading...</h1>)}
         </div>
       )
   

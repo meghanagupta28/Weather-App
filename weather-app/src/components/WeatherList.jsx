@@ -6,7 +6,7 @@ function HourlyWeather({ date, data }){
     const hours = [ 2, 5, 8, 11, 14, 17, 20, 23 ];
     return(
       <>
-            <div className='p-4 m-3 border rounded-md backdrop-blur-sm'>
+            <div className='p-4 m-3 bg-black border rounded-xl bg-opacity-60'>
               <div className="flex">
                 <div className='text-3xl basis-1/4 font-DMSerif'>{date}</div>
                 <div className='flex font-medium basis-3/4'>
@@ -120,13 +120,23 @@ function WeatherItems({ weather }){
       <div className="flex justify-center gap-2 p-5 m-1 backdrop-blur-sm ">
         {daily.map((element, index) => {
                 return(
-                    <div className='self-center flex-grow p-3 border rounded-xl ' key={index} onClick={() => handleClick(index)}>
-                        <h1 className='text-xl font-DMSerif'>{element.time}</h1>
-                        <GetIcon weather_code={element.weather_code} is_day={0}/>
-                        <h3>{element.temperature_max}</h3>
-                        <h3>{element.temperature_min}</h3>
-                        <h3>{element.precipitation}</h3>
-                      
+                    <div className='flex flex-col self-center flex-grow p-3 bg-black border text-align-center bg-opacity-60 rounded-xl' key={index} onClick={() => handleClick(index)}>
+                        <div className='text-xl font-DMSerif basis-full'>{element.time}</div>
+                        <div className='h-7'>
+                          <GetIcon weather_code={element.weather_code} is_day={1} size={'small'}/>
+                        </div>
+                        <div className='my-0.5'>
+                          <div className='text-xs'>Max</div>
+                          <div className=''>{element.temperature_max}</div>
+                        </div>
+                        <div className='my-0.5'>
+                          <div className='text-xs'>Min</div>
+                          <div className='basis-full'>{element.temperature_min}</div>
+                        </div>
+                        <div className='my-0.5'>
+                            <div className='text-xs'>Precip.</div>
+                            <div className='basis-full'>{element.precipitation}</div>
+                        </div>
                     </div>
                 )
             })}

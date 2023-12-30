@@ -134,10 +134,10 @@ const data = [
     },
 ];
 
-const getMapping = ({ weather_code, is_day }) =>{
+const getMapping = ({ weather_code, is_day, size }) =>{
     const link = data.find(item => weather_code === item.id);
     return (
-        <div className='fill-white'> 
+        <div className='w-full h-full text-3xl fill-white'> 
             {is_day ? link['link-day'] : link['link-night']}
         </div>
     );

@@ -5,13 +5,13 @@ import './App.css'
 
 const WeatherNavBar = ({ handleRefreshClick }) => {
   return(
-    <ul className="flex bg-sky-600">
+    <ul className="flex bg-black bg-opacity-80">
       <li className="flex m-2 align-middle basis-1/2">
         <div className='text-2xl font-DMSerif text-stone-50'>Weathery</div>
       </li>
       <li className="flex justify-end m-2 basis-1/2">
       <button 
-        className="px-4 py-2 text-blue-600 rounded font-sans-serif bg-sky-400 hover:bg-sky-200"
+        className="px-4 py-2 text-white bg-transparent border rounded font-Montserrat hover:bg-white hover:bg-opacity-30"
         onClick={handleRefreshClick}>
           Use Current Location
       </button>
@@ -43,11 +43,12 @@ function WeatherApp(){
   }
   
   return(
-    <div className="h-screen text-white bg-center bg-no-repeat bg-cover bg-wallpaper">
+    <div className="h-full text-white bg-center bg-no-repeat bg-cover bg-wallpaper">
       
       <WeatherNavBar handleRefreshClick={handleRefreshClick}/>
       <CurrentWeather coordinates={coordinates} />
       <WeatherList coordinates={coordinates} />
+      <div className='p-0 m-0 bg-black'><br /></div>
     </div>
   )
 }

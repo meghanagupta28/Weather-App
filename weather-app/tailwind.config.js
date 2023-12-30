@@ -11,7 +11,7 @@ export default {
         Montserrat: ["Montserrat", "sans-serif"]
       },
       backgroundImage:{
-        'wallpaper' : "url('./public/nightcity.jpg')"
+        'wallpaper' : "url('./nightcity.jpg')"
       },
       backdropBlur: {
         xs: '2px',
