@@ -6,6 +6,9 @@ import './App.css'
 const WeatherNavBar = ({ handleRefreshClick }) => {
   return(
     <ul className="flex bg-black bg-opacity-80">
+      <li className='w-10 h-10 m-2'>
+        <img src="../public/weatherlogo.webp" alt="" />
+      </li>
       <li className="flex m-2 align-middle basis-1/2">
         <div className='text-2xl font-DMSerif text-stone-50'>Weathery</div>
       </li>

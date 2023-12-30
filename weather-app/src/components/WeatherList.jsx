@@ -120,7 +120,7 @@ function WeatherItems({ weather }){
       <div className="flex justify-center gap-2 p-5 m-1 backdrop-blur-sm ">
         {daily.map((element, index) => {
                 return(
-                    <div className='flex flex-col self-center flex-grow p-3 bg-black border text-align-center bg-opacity-60 rounded-xl' key={index} onClick={() => handleClick(index)}>
+                    <div className='flex flex-col self-center flex-grow p-3 bg-black border text-align-center bg-opacity-60 rounded-xl hover:bg-slate-700 hover:bg-opacity-70' key={index} onClick={() => handleClick(index)}>
                         <div className='text-xl font-DMSerif basis-full'>{element.time}</div>
                         <div className='h-7'>
                           <GetIcon weather_code={element.weather_code} is_day={1} size={'small'}/>
@@ -178,7 +178,7 @@ export default function WeatherList({ coordinates }){
     }, [coordinates])
 
     return(
-      <div className="bg-transparent font-Montserrat">
+      <div className="text-center bg-transparent font-Montserrat">
         <WeatherItems weather={weather} />
       </div>
     )
