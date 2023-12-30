@@ -1,22 +1,59 @@
 import { useState, useEffect } from 'react'
+import iconMap from './helperFunctions/icon-mapping'
 
-
-function HourlyWeather({ data }){
+function HourlyWeather({ date, data }){
+    
     const hours = [ 2, 5, 8, 11, 14, 17, 20, 23 ];
     return(
-        <div className="basis-3/4 flex pd-4 ">
-            {data && hours.map((element, index) =>{
-                return(<div className="pd-3 flex-grow grid" key={index}>
-                    <div className='text-s'>
-                      {data.time[index]}
-                      <span className='text-xs'> 00</span>
-                    </div>
-                    <h4>{data.temperature[index]}</h4>
-                    <h4>{data.precipitation[index]}</h4>
-                    <h4>{data.wind_speed[index]}</h4>
-                </div>)
-            })}
-        </div>
+      <>
+            <div className='p-4 m-3 border rounded-md'>
+              <div className="flex">
+                <div className='text-3xl basis-1/4 font-DMSerif'>{date}</div>
+                <div className='flex font-medium basis-3/4'>
+                  {data && hours.map((element, index) =>{
+                    return(<div className="basis-full" key={index}>
+                          {data.time[index]}
+                          <span className='text-xs'> 00</span>
+                    </div>)
+                  })}
+                </div>
+              </div>
+
+              <div className="flex">
+                <div className='font-medium basis-1/4'>Temperature</div>
+                <div className='flex basis-3/4'>
+                    {data && hours.map((element, index) =>{
+                      return(<div className="flex-grow basis-full" key={index}>
+                            {data.temperature[index]}
+                      </div>)
+                    })}
+                  </div>
+              </div>
+              
+              <div className="flex">
+                <div className='font-medium basis-1/4'>Precipitation</div>
+                <div className="flex basis-3/4">
+                    {data && hours.map((element, index) =>{
+                      return(<div className="flex-grow basis-full" key={index}>
+                            {data.precipitation[index]}
+                      </div>)
+                    })}
+                  </div>
+              </div>
+
+              <div className="flex">
+                <div className='font-medium basis-1/4'>Wind Speed</div>
+                <div className="flex basis-3/4">
+                    {data && hours.map((element, index) =>{
+                      return(<div className="flex-grow basis-full" key={index}>
+                            {data.wind_speed[index]}
+                      </div>)
+                    })}
+                </div>
+              </div>
+              
+            </div>
+      </>
     )
 }
 
@@ -80,35 +117,21 @@ function WeatherItems({ weather }){
     const { daily , hourly } = modifyData(weather);
 
     return(<>
-      <div className="m-1 p-5 flex justify-center gap-2">
+      <div className="flex justify-center gap-2 p-5 m-1">
         {daily.map((element, index) => {
                 return(
-                    <div className='p-3 flex-grow border rounded-xl self-center' key={index} onClick={() => handleClick(index)}>
-                        <h1 className=''>{element.time}</h1>
+                    <div className='self-center flex-grow p-3 border rounded-xl' key={index} onClick={() => handleClick(index)}>
+                        <h1 className='text-xl font-DMSerif'>{element.time}</h1>
+                        <img src={iconMap(element.weather_code, 1)} alt="" />
                         <h3>{element.temperature_max}</h3>
                         <h3>{element.temperature_min}</h3>
                         <h3>{element.precipitation}</h3>
+                      
                     </div>
                 )
             })}
       </div>
-    <div className="m-5 pd-3 flex border rounded-xl">
-      <div className="pd-3 basis-1/4">
-      {daily.map((element, index) => {
-                
-                  if(index == isActive){
-                    return(
-                    <div className='p-3 grid' key={index} onClick={() => handleClick(index)}>
-                        <h1 className='text-3xl'>{element.time}</h1>
-                        <h3>Temperature</h3>
-                        <h3>Precipitation</h3>
-                        <h3>Wind Speed</h3>
-                    </div>)
-                  }
-            })}
-      </div>
-      <HourlyWeather data={hourly[isActive]} />
-    </div>
+        {daily[isActive] && <HourlyWeather date ={daily[isActive].time} data={hourly[isActive]} />}
     </>)
 }
 
@@ -145,7 +168,7 @@ export default function WeatherList({ coordinates }){
     }, [coordinates])
 
     return(
-      <div className="weatherlist">
+      <div className="bg-transparent font-Montserrat">
         <WeatherItems weather={weather} />
       </div>
     )

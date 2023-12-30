@@ -46,24 +46,18 @@ function CurrentWeather({ coordinates }){
         <div className="flex p-10 m-10 border shadow-sm shadow-gray-300 rounded-xl">
          { weather?
           (<>
-          <div className="grid basis-1/2">
-            <h1 className="text-5xl">{weather.current.temperature_2m}</h1>
-            <div className="current-rel-humidity">
-              
-              <h3 className="text-2xl">{weather.current.relative_humidity_2m}</h3>
-            </div>
-            <div className="current-precipitation">
-              <h3 className="text-2xl">{weather.current.precipitation}</h3>
-            </div>
-            <div className="current-windspd">
-              <h3 className="text-2xl">{weather.current.wind_speed_10m}</h3>
-            </div>
+          <div className="grid basis-1/2 font-Montserrat">
+            <div className="text-5xl">{weather.current.temperature_2m}</div>
+            <div className="text-2xl">{weather.current.relative_humidity_2m}</div>
+            <div className="text-2xl">{weather.current.precipitation}</div>
+            <div className="text-2xl">{weather.current.wind_speed_10m}</div>
+
           </div>
       
           <img className="h-36 w-36" src= {getMapping(weather.current.weather_code, weather.current.is_day_or_night)} alt="weather-icon" />
           </>)
           :
-          (<h1 className="text-5xl">Loading...</h1>)}
+          (<h1 className="text-5xl font-DMSerif">Loading...</h1>)}
         </div>
       )
   
